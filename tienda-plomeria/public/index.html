@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plomería Express | Herramientas y accesorios</title>
+<meta name="description" content="Compra tuberías, grifería y herramientas de plomería con pago seguro en línea.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head><body>
+<header><div class="wrap">
+  <a class="logo" href="/"><span>▍</span><span class="nombre-tienda">Plomería Express</span></a>
+  <input id="buscar" class="buscar" type="search" placeholder="Buscar llaves, tubos, codos…" aria-label="Buscar productos">
+  <button id="abrir-carrito" class="btn btn-n">Carrito<span id="cuenta">0</span></button>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <h1>Todo para que el agua llegue donde debe.</h1>
+  <p>Tuberías, grifería y herramientas para plomeros y hogares. Paga en línea y recibe en tu puerta.</p>
+  <a class="btn btn-n" href="#catalogo">Ver productos</a>
+</div></section>
+<div class="wrap beneficios"><span><b>Pago seguro</b> con Wompi (tarjeta, PSE, Nequi)</span><span><b>Envíos</b> a todo el país</span><span><b>Stock</b> actualizado al instante</span></div>
+
+<main class="wrap">
+  <div class="filtros" id="filtros"></div>
+  <div class="grid" id="catalogo"></div>
+</main>
+<footer><div class="wrap"><strong class="nombre-tienda">Plomería Express</strong> · Pagos procesados por Wompi. Edita aquí tus datos de contacto.</div></footer>
+
+<div id="capa" class="capa"></div>
+<aside id="carrito" class="panel" aria-label="Carrito">
+  <h2>Tu carrito <button class="cerrar" aria-label="Cerrar">×</button></h2>
+  <div class="lineas" id="lineas"></div>
+  <div class="totales">
+    <div><span>Subtotal</span><span id="sub">$0</span></div><div><span>Envío</span><span id="envio">$0</span></div>
+    <div class="t"><span>Total</span><span id="total">$0</span></div>
+    <button id="ir-pago" class="btn btn-n" disabled>Continuar al pago</button>
+  </div>
+</aside>
+<aside id="pago" class="panel" aria-label="Datos de envío">
+  <h2>Datos de envío <button class="cerrar" aria-label="Cerrar">×</button></h2>
+  <form id="form-pago" class="form">
+    <label>Nombre completo<input name="name" required autocomplete="name"></label>
+    <label>Correo electrónico<input name="email" type="email" required autocomplete="email"></label>
+    <label>Celular<input name="phone" type="tel" required autocomplete="tel"></label>
+    <label>Dirección de entrega<input name="address" required autocomplete="street-address"></label>
+    <label>Ciudad<input name="city" required></label>
+    <p class="msg" id="error" role="alert"></p>
+    <button id="pagar" class="btn btn-n">Pagar con Wompi</button>
+    <p class="seguro">Serás llevado al checkout seguro de Wompi. No guardamos datos de tu tarjeta.</p>
+  </form>
+</aside>
+<script src="js/ui.js"></script><script src="js/cart.js"></script><script src="js/main.js"></script>
+</body></html>

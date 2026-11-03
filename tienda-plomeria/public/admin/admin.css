@@ -1,0 +1,4 @@
+.fila{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;padding:0}
+.tabla{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{padding:8px 10px;border-bottom:1px solid var(--linea);text-align:left;vertical-align:top}th{background:var(--azul-cl);color:var(--azul)}
+td button{margin-right:4px}.ok{color:#1B7F3B;font-weight:600}.mal{color:#B3261E;font-weight:600}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administración</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css"><link rel="stylesheet" href="admin.css"></head><body>
+<header><div class="wrap"><span class="logo">Panel <span>admin</span></span><nav id="nav" hidden>
+<button class="chip on" data-t="productos">Productos</button> <button class="chip" data-t="pedidos">Pedidos</button> <button class="chip" id="salir">Salir</button></nav></div></header>
+
+<main class="wrap" style="padding-top:22px;padding-bottom:40px">
+<form id="login" class="form" style="max-width:340px;margin:10vh auto"><h2>Ingresa a tu panel</h2>
+<label>Clave de administrador<input type="password" id="clave" required></label><p class="msg" id="e-login"></p><button class="btn btn-a">Entrar</button></form>
+
+<section id="productos" hidden>
+  <h2>Productos</h2>
+  <form id="f-prod" class="form fila"><input type="hidden" name="id">
+    <label>Nombre<input name="name" required></label><label>Categoría<input name="category" list="cats" required></label><datalist id="cats"></datalist>
+    <label>Precio (COP)<input name="price" type="number" min="0" required></label><label>Descuento %<input name="discount" type="number" min="0" max="90" value="0"></label>
+    <label>Stock<input name="stock" type="number" min="0" required></label><label>URL de imagen<input name="image" placeholder="https://… (opcional)"></label>
+    <label style="grid-column:1/-1">Descripción<input name="description"></label>
+    <div><button class="btn btn-n">Guardar producto</button> <button type="button" class="btn btn-l" id="nuevo">Limpiar</button></div>
+  </form>
+  <form id="f-desc" class="fila" style="margin:16px 0;align-items:end"><b>Descuento masivo:</b>
+    <select id="d-cat"></select><input id="d-val" type="number" min="0" max="90" placeholder="% (0 lo quita)" required><button class="btn btn-a">Aplicar</button></form>
+  <div class="tabla"><table id="t-prod"></table></div>
+</section>
+
+<section id="pedidos" hidden><h2>Pedidos</h2><div class="tabla"><table id="t-ped"></table></div></section>
+</main>
+<script src="../js/ui.js"></script><script src="admin.js"></script></body></html>

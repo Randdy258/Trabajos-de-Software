@@ -1,0 +1,71 @@
+{
+  "products": [
+    {
+      "id": "p1",
+      "name": "Llave stilson 14\"",
+      "category": "Herramientas",
+      "price": 68000,
+      "discount": 10,
+      "stock": 25,
+      "image": "",
+      "description": "Acero forjado, mordaza ajustable para tubería.",
+      "active": true
+    },
+    {
+      "id": "p2",
+      "name": "Cinta teflón profesional x10",
+      "category": "Accesorios",
+      "price": 15000,
+      "discount": 0,
+      "stock": 120,
+      "image": "",
+      "description": "Sellado de roscas en agua y gas. Paquete de 10 rollos.",
+      "active": true
+    },
+    {
+      "id": "p3",
+      "name": "Tubo PVC presión 1/2\" x 6 m",
+      "category": "Tuberías",
+      "price": 24500,
+      "discount": 0,
+      "stock": 60,
+      "image": "",
+      "description": "Tubo PVC para presión, norma NTC.",
+      "active": true
+    },
+    {
+      "id": "p4",
+      "name": "Codo PVC 1/2\" (x10)",
+      "category": "Tuberías",
+      "price": 9000,
+      "discount": 5,
+      "stock": 200,
+      "image": "",
+      "description": "Codo de 90° para presión. Bolsa de 10 unidades.",
+      "active": true
+    },
+    {
+      "id": "p5",
+      "name": "Llave mezcladora para lavamanos",
+      "category": "Grifería",
+      "price": 135000,
+      "discount": 15,
+      "stock": 14,
+      "image": "",
+      "description": "Monocomando cromado, incluye mangueras.",
+      "active": true
+    },
+    {
+      "id": "p6",
+      "name": "Destapador de caño con manivela",
+      "category": "Herramientas",
+      "price": 42000,
+      "discount": 0,
+      "stock": 18,
+      "image": "",
+      "description": "Resorte de 5 m para desagües y sifones.",
+      "active": true
+    }
+  ],
+  "orders": []
+}
