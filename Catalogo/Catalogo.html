@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cauveran | Curated Artisanal Indian Decorative Arts & Export</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            950: '#06150C',
+                            900: '#0D2818', // Primary Deep Emerald
+                            800: '#143822',
+                            700: '#1E4C30',
+                        },
+                        gold: {
+                            300: '#F0D68A',
+                            400: '#E5C158',
+                            500: '#D4AF37', // Accent Warm Gold
+                            600: '#B59127',
+                        },
+                        cream: '#F9F8F6', // Off-white luxury background
+                        charcoal: '#2B2B2B',
+                        sand: '#EFECE6'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F9F8F6;
+            color: #2B2B2B;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Arched Portal Frame style like Cauveran reference */
+        .arch-frame {
+            border-top-left-radius: 200px;
+            border-top-right-radius: 200px;
+            overflow: hidden;
+        }
+
+        .gold-border {
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0D2818;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-500 selection:text-emerald-950">
+
+    <!-- TOP ANNOUNCEMENT BAR FOR INTERNATIONAL BUYERS -->
+    <div class="bg-emerald-950 text-gold-300 text-xs py-2 px-4 text-center border-b border-gold-500/20 tracking-wider uppercase font-medium">
+        <span class="inline-block mr-2"><i class="fa-solid fa-globe"></i></span>
+        Exporting Premium Brassware, Idols & Fine Art Worldwide | Air & Sea Freight Ready | Minimum Wholesale MOQ Applies
+    </div>
+
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 bg-emerald-900/95 backdrop-blur-md text-white border-b border-gold-500/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- LOGO -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border border-gold-500 flex items-center justify-center text-gold-500 font-serif text-xl font-bold bg-emerald-950 group-hover:bg-gold-500 group-hover:text-emerald-900 transition-all duration-300">
+                    C
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-2xl font-bold tracking-widest text-white group-hover:text-gold-400 transition-colors">CAUVERAN</span>
+                    <span class="text-[9px] tracking-[0.25em] text-gold-400/80 uppercase font-light">Decorative Arts</span>
+                </div>
+            </a>
+
+            <!-- NAV LINKS -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#hero" class="text-white hover:text-gold-400 transition-colors">Home</a>
+                <a href="#catalogue" class="text-white/80 hover:text-gold-400 transition-colors">Collections</a>
+                <a href="#export-trust" class="text-white/80 hover:text-gold-400 transition-colors">Export Capabilities</a>
+                <a href="#buyer-guide" class="text-white/80 hover:text-gold-400 transition-colors">For Buyers</a>
+                <a href="#contact" class="text-white/80 hover:text-gold-400 transition-colors">Contact</a>
+            </nav>
+
+            <!-- RIGHT HEADER ACTIONS -->
+            <div class="flex items-center gap-4">
+                <!-- RFQ Basket Toggle Button -->
+                <button onclick="toggleRFQDrawer()" class="relative p-2.5 rounded-full bg-emerald-800 text-gold-400 hover:bg-gold-500 hover:text-emerald-950 transition-all" title="View Quote Basket">
+                    <i class="fa-solid fa-list-check text-lg"></i>
+                    <span id="rfq-badge" class="absolute -top-1 -right-1 w-5 h-5 bg-gold-500 text-emerald-950 text-xs font-bold rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+
+                <!-- REQUEST CATALOGUE CTA BUTTON -->
+                <a href="#catalogue" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-emerald-950 bg-gold-500 hover:bg-gold-400 rounded-full transition-all duration-300 shadow-md shadow-gold-500/10 hover:shadow-gold-500/25">
+                    Request Wholesale Catalogue <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                </a>
+
+                <!-- MOBILE MENU TOGGLE -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white text-xl p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU DROPDOWN -->
+        <div id="mobile-menu" class="hidden md:hidden bg-emerald-950 border-b border-gold-500/20 px-6 py-6 space-y-4 text-sm">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block text-white hover:text-gold-400">Home</a>
+            <a href="#catalogue" onclick="toggleMobileMenu()" class="block text-white hover:text-gold-400">Collections</a>
+            <a href="#export-trust" onclick="toggleMobileMenu()" class="block text-white hover:text-gold-400">Export Capabilities</a>
+            <a href="#buyer-guide" onclick="toggleMobileMenu()" class="block text-white hover:text-gold-400">For Overseas Buyers</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-white hover:text-gold-400">Contact Us</a>
+            <div class="pt-4 border-t border-emerald-800">
+                <a href="#catalogue" onclick="toggleMobileMenu()" class="block text-center py-3 bg-gold-500 text-emerald-950 font-semibold rounded-full uppercase text-xs tracking-wider">
+                    Request Wholesale Catalogue
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (INPIRED BY CAUVERAN EDITORIAL DESIGN) -->
+    <section id="hero" class="relative bg-emerald-900 text-white overflow-hidden pt-12 pb-20 md:py-24">
+        <!-- Subtle Pattern Background -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:24px_24px]"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- LEFT CONTENT COLUMN -->
+                <div class="lg:col-span-7 space-y-8">
+                    <!-- Category Tag -->
+                    <div class="inline-flex items-center gap-3">
+                        <span class="w-8 h-[1px] bg-gold-500"></span>
+                        <span class="text-gold-400 text-xs uppercase tracking-[0.3em] font-semibold">Curated Indian Decorative Arts</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.08] text-cream">
+                        Taking Indian <br>
+                        <span class="italic text-gold-400 font-light">craftsmanship</span> <br>
+                        to the world.
+                    </h1>
+
+                    <!-- Paragraph -->
+                    <p class="text-white/80 text-base sm:text-lg max-w-xl font-light leading-relaxed">
+                        We don't pitch — we tell a story. Travelling the craft villages of India, we identify true craftsmanship through years of experience and a ground connect that runs deep. Bringing the finest hand-cast brass idols, architectural decor, and fine paintings to global galleries, architects, and luxury wholesalers.
+                    </p>
+
+                    <!-- CTAs & Stats -->
+                    <div class="pt-4 flex flex-wrap items-center gap-4 sm:gap-6">
+                        <a href="#catalogue" class="px-8 py-4 bg-gold-500 hover:bg-gold-400 text-emerald-950 font-semibold text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-lg shadow-gold-500/20 flex items-center gap-3">
+                            Explore Export Catalogue <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="px-8 py-4 border border-gold-500/40 hover:border-gold-500 text-gold-300 font-semibold text-xs uppercase tracking-widest rounded-full hover:bg-emerald-800/50 transition-all">
+                            Submit Bulk Enquiry
+                        </a>
+                    </div>
+
+                    <!-- Key Export Metrics -->
+                    <div class="pt-8 border-t border-emerald-800/80 grid grid-cols-3 gap-6 max-w-lg">
+                        <div>
+                            <div class="font-serif text-3xl font-bold text-gold-400">50+</div>
+                            <div class="text-xs text-white/70 uppercase tracking-wider mt-1">Export Nations</div>
+                        </div>
+                        <div>
+                            <div class="font-serif text-3xl font-bold text-gold-400">100%</div>
+                            <div class="text-xs text-white/70 uppercase tracking-wider mt-1">QC Audited</div>
+                        </div>
+                        <div>
+                            <div class="font-serif text-3xl font-bold text-gold-400">HS-8306</div>
+                            <div class="text-xs text-white/70 uppercase tracking-wider mt-1">Customs Ready</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: ARCHED FRAME IMAGE SHOWCASE -->
+                <div class="lg:col-span-5 flex justify-center lg:justify-end">
+                    <div class="relative w-full max-w-md">
+                        <!-- Background Glow Accent -->
+                        <div class="absolute -inset-4 bg-gold-500/10 rounded-full blur-2xl"></div>
+                        
+                        <!-- Arch Frame Container -->
+                        <div class="arch-frame relative border-2 border-gold-500/40 p-3 bg-emerald-950/60 shadow-2xl">
+                            <div class="arch-frame w-full h-[480px] sm:h-[540px] bg-emerald-950 relative overflow-hidden group">
+                                <img src="https://images.unsplash.com/photo-1608976328267-e673d3ed06ce?auto=format&fit=crop&w=1000&q=80" 
+                                     alt="Artisanal Brass Lord Vishnu Idol" 
+                                     class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/600x800/0D2818/D4AF37?text=Artisanal+Brass+Idol';">
+                                
+                                <!-- Floating Overlay Badge -->
+                                <div class="absolute bottom-6 left-6 right-6 bg-emerald-950/90 backdrop-blur-md p-4 rounded-xl border border-gold-500/30 text-white">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <span class="text-[10px] uppercase text-gold-400 tracking-widest block font-medium">Featured Export SKU</span>
+                                            <h4 class="font-serif text-lg text-cream">Lord Venkateswara Arch Idol</h4>
+                                            <p class="text-xs text-white/70">Solid Lost-Wax Cast Brass • 28 Inches</p>
+                                        </div>
+                                        <button onclick="addToRFQ('SKU-BRS-901', 'Lord Venkateswara Arch Idol', 'Idols', 'https://images.unsplash.com/photo-1608976328267-e673d3ed06ce?auto=format&fit=crop&w=400&q=80')" class="w-10 h-10 rounded-full bg-gold-500 text-emerald-950 flex items-center justify-center hover:bg-gold-400 transition-colors shadow-md">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secondary Ornamental Floating Badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-gold-500 text-emerald-950 p-4 rounded-2xl shadow-xl hidden sm:flex items-center gap-3 border border-gold-300">
+                            <i class="fa-solid fa-award text-2xl"></i>
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wide">Hand-Finished Pure Brass</div>
+                                <div class="text-[11px] text-emerald-900">Certified Heritage Craftsmanship</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST BAR & CERTIFICATIONS -->
+    <section id="export-trust" class="bg-sand border-y border-gold-500/20 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-6">
+                <span class="text-[11px] uppercase tracking-[0.25em] text-charcoal/60 font-semibold">Trusted by Luxury Galleries, Hotels & Importers Across the Globe</span>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-4 rounded-xl bg-white/60 border border-charcoal/5 shadow-sm flex flex-col items-center">
+                    <i class="fa-solid fa-plane-departure text-2xl text-emerald-900 mb-2"></i>
+                    <h4 class="font-serif font-bold text-lg text-charcoal">Air & Sea Shipping</h4>
+                    <p class="text-xs text-charcoal/70">FOB, CIF, & DDP Door Delivery Options</p>
+                </div>
+                <div class="p-4 rounded-xl bg-white/60 border border-charcoal/5 shadow-sm flex flex-col items-center">
+                    <i class="fa-solid fa-box-archive text-2xl text-emerald-900 mb-2"></i>
+                    <h4 class="font-serif font-bold text-lg text-charcoal">Export-Grade Packing</h4>
+                    <p class="text-xs text-charcoal/70">Wooden Crate & Foam Protection</p>
+                </div>
+                <div class="p-4 rounded-xl bg-white/60 border border-charcoal/5 shadow-sm flex flex-col items-center">
+                    <i class="fa-solid fa-file-contract text-2xl text-emerald-900 mb-2"></i>
+                    <h4 class="font-serif font-bold text-lg text-charcoal">Customs Compliance</h4>
+                    <p class="text-xs text-charcoal/70">HS Code Certificates & Origin Docs</p>
+                </div>
+                <div class="p-4 rounded-xl bg-white/60 border border-charcoal/5 shadow-sm flex flex-col items-center">
+                    <i class="fa-solid fa-[#D4AF37] fa-shield-halved text-2xl text-emerald-900 mb-2"></i>
+                    <h4 class="font-serif font-bold text-lg text-charcoal">Quality Inspection</h4>
+                    <p class="text-xs text-charcoal/70">Strict Pre-Shipment Quality Audits</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT CATALOGUE SECTION -->
+    <section id="catalogue" class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- SECTION HEADER -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-charcoal/10 pb-6">
+                <div>
+                    <span class="text-gold-600 text-xs uppercase tracking-[0.25em] font-bold block mb-2">Export Collection</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl font-normal text-emerald-950">Wholesale Product Catalogue</h2>
+                    <p class="text-charcoal/70 text-sm mt-2 max-w-xl">Browse our export-ready collection. Select SKUs to compile an instant bulk price & freight quote request.</p>
+                </div>
+
+                <!-- CATEGORY FILTER TABS -->
+                <div class="mt-6 md:mt-0 flex flex-wrap gap-2">
+                    <button onclick="filterCategory('all')" id="btn-all" class="filter-btn active px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-emerald-900 text-gold-400 transition-all">All Collections</button>
+                    <button onclick="filterCategory('decor')" id="btn-decor" class="filter-btn px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-sand text-charcoal hover:bg-emerald-800 hover:text-white transition-all">Brass Décor</button>
+                    <button onclick="filterCategory('idols')" id="btn-idols" class="filter-btn px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-sand text-charcoal hover:bg-emerald-800 hover:text-white transition-all">Idols & Deities</button>
+                    <button onclick="filterCategory('paintings')" id="btn-paintings" class="filter-btn px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-sand text-charcoal hover:bg-emerald-800 hover:text-white transition-all">Fine Art & Paintings</button>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID -->
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- PRODUCTS WILL BE DYNAMICALLY RENDERED BY JS -->
+            </div>
+
+            <!-- CATALOGUE DOWNLOAD BANNER -->
+            <div class="mt-16 bg-emerald-900 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-xl border border-gold-500/30">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-gold-500 text-9xl font-serif">C</div>
+                <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+                    <div class="space-y-3 max-w-2xl text-center lg:text-left">
+                        <span class="text-gold-400 text-xs font-semibold uppercase tracking-widest">Complete Master Volume</span>
+                        <h3 class="font-serif text-3xl sm:text-4xl text-cream">Download Full B2B Export Catalogue (2026-2027)</h3>
+                        <p class="text-white/70 text-sm font-light">Get offline access to our complete 140+ page master catalogue including pricing tiers, container capacity metrics, and custom patina finishes.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                        <button onclick="downloadMasterCataloguePDF()" class="px-8 py-4 bg-gold-500 hover:bg-gold-400 text-emerald-950 font-semibold text-xs uppercase tracking-widest rounded-full transition-all flex items-center justify-center gap-3 shadow-lg">
+                            <i class="fa-solid fa-file-pdf text-lg"></i> Download PDF (18 MB)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OVERSEAS BUYER & LOGISTICS GUIDE -->
+    <section id="buyer-guide" class="py-20 bg-emerald-950 text-white relative border-t border-gold-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-gold-400 text-xs uppercase tracking-[0.25em] font-semibold block mb-2">Export Workflow</span>
+                <h2 class="font-serif text-4xl sm:text-5xl text-cream">Seamless Bulk Procurement for Global Buyers</h2>
+                <p class="text-white/70 text-sm mt-3">From village artisan workshops directly to your destination port with guaranteed safety and certified authenticity.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                
+                <!-- STEP 1 -->
+                <div class="bg-emerald-900/50 p-6 rounded-2xl border border-gold-500/20 relative">
+                    <div class="w-12 h-12 rounded-full bg-gold-500 text-emerald-950 font-serif font-bold text-xl flex items-center justify-center mb-6">1</div>
+                    <h3 class="font-serif text-xl text-cream font-semibold mb-2">Select SKUs & Quantities</h3>
+                    <p class="text-xs text-white/70 leading-relaxed">Choose items from our catalogue or request custom brass designs. Add items to your quote request basket.</p>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="bg-emerald-900/50 p-6 rounded-2xl border border-gold-500/20 relative">
+                    <div class="w-12 h-12 rounded-full bg-gold-500 text-emerald-950 font-serif font-bold text-xl flex items-center justify-center mb-6">2</div>
+                    <h3 class="font-serif text-xl text-cream font-semibold mb-2">Receive Proforma & Freight</h3>
+                    <p class="text-xs text-white/70 leading-relaxed">Our export team sends a formal Proforma Invoice with sea/air freight quotes (FOB, CIF, DDP) within 24 hours.</p>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="bg-emerald-900/50 p-6 rounded-2xl border border-gold-500/20 relative">
+                    <div class="w-12 h-12 rounded-full bg-gold-500 text-emerald-950 font-serif font-bold text-xl flex items-center justify-center mb-6">3</div>
+                    <h3 class="font-serif text-xl text-cream font-semibold mb-2">Crafting & QC Audit</h3>
+                    <p class="text-xs text-white/70 leading-relaxed">Master craftsmen complete casting and polishing. Each piece undergoes 100% inspection and custom fumigated packaging.</p>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="bg-emerald-900/50 p-6 rounded-2xl border border-gold-500/20 relative">
+                    <div class="w-12 h-12 rounded-full bg-gold-500 text-emerald-950 font-serif font-bold text-xl flex items-center justify-center mb-6">4</div>
+                    <h3 class="font-serif text-xl text-cream font-semibold mb-2">Global Shipping & Customs</h3>
+                    <p class="text-xs text-white/70 leading-relaxed">Despatch with full bill of lading, certificate of origin, and tracking documentation directly to your warehouse.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INQUIRY / CONTACT SECTION -->
+    <section id="contact" class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- CONTACT INFO -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-gold-600 text-xs uppercase tracking-[0.25em] font-bold block mb-2">Trade Desk</span>
+                        <h2 class="font-serif text-4xl font-normal text-emerald-950">Connect with Our International Export Desk</h2>
+                        <p class="text-charcoal/70 text-sm mt-3">We assist architects, gallery owners, interior designers, and wholesale distributors worldwide.</p>
+                    </div>
+
+                    <div class="space-y-6 text-sm">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-900 text-gold-400 flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-emerald-950">Export Headquarters</h4>
+                                <p class="text-charcoal/70">Cauveran Crafts Private Limited<br>Craft Village Hub, Moradabad & Tanjore, India</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-900 text-gold-400 flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-emerald-950">Trade & Wholesale Enquiries</h4>
+                                <p class="text-charcoal/70">exports@cauveran-crafts.com<br>orders@cauveran-crafts.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-900 text-gold-400 flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-emerald-950">Direct Export Line / WhatsApp</h4>
+                                <p class="text-charcoal/70">+91 98765 43210 (24/7 International Trade Support)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TRUST BADGES -->
+                    <div class="p-6 bg-sand rounded-2xl border border-charcoal/10">
+                        <h4 class="font-serif font-bold text-emerald-950 mb-2">Export Registrations</h4>
+                        <div class="flex flex-wrap gap-2 text-[11px] text-charcoal/80">
+                            <span class="px-2.5 py-1 bg-white rounded border">EPCG Member</span>
+                            <span class="px-2.5 py-1 bg-white rounded border">Handicrafts Export Council</span>
+                            <span class="px-2.5 py-1 bg-white rounded border">ISO 9001:2015 Certified</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GENERAL ENQUIRY FORM -->
+                <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-charcoal/5">
+                    <h3 class="font-serif text-2xl text-emerald-950 font-bold mb-6">Send Direct Wholesale Query</h3>
+                    
+                    <form onsubmit="handleDirectFormSubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-charcoal/80 mb-2">Your Full Name *</label>
+                                <input type="text" required placeholder="e.g. Alexander Wright" class="w-full px-4 py-3 rounded-xl bg-sand/50 border border-charcoal/10 text-sm focus:outline-none focus:border-gold-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-charcoal/80 mb-2">Company / Business Name *</label>
+                                <input type="text" required placeholder="e.g. Wright Luxury Interiors LLC" class="w-full px-4 py-3 rounded-xl bg-sand/50 border border-charcoal/10 text-sm focus:outline-none focus:border-gold-500">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-charcoal/80 mb-2">Corporate Email *</label>
+                                <input type="email" required placeholder="alex@company.com" class="w-full px-4 py-3 rounded-xl bg-sand/50 border border-charcoal/10 text-sm focus:outline-none focus:border-gold-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-charcoal/80 mb-2">Destination Country / Port *</label>
+                                <input type="text" required placeholder="e.g. Dubai, UAE / Port of Hamburg" class="w-full px-4 py-3 rounded-xl bg-sand/50 border border-charcoal/10 text-sm focus:outline-none focus:border-gold-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-charcoal/80 mb-2">Interests & Requirements</label>
+                            <textarea rows="4" placeholder="Detail required quantities, custom sizes, patina finishes, or target delivery dates..." class="w-full px-4 py-3 rounded-xl bg-sand/50 border border-charcoal/10 text-sm focus:outline-none focus:border-gold-500"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 bg-emerald-900 hover:bg-emerald-800 text-gold-400 font-semibold text-xs uppercase tracking-widest rounded-xl transition-all shadow-md">
+                            Submit Trade Inquiry <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-emerald-950 text-white border-t border-gold-500/20 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-emerald-800">
+                
+                <!-- COL 1: LOGO & ABOUT -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full border border-gold-500 flex items-center justify-center text-gold-500 font-serif font-bold bg-emerald-900">
+                            C
+                        </div>
+                        <span class="font-serif text-2xl font-bold tracking-widest text-cream">CAUVERAN</span>
+                    </div>
+                    <p class="text-white/70 text-xs leading-relaxed max-w-sm">
+                        Curating and exporting heritage Indian handicraft brassware, lost-wax idols, and traditional fine art to discerning international buyers, architects, and luxury galleries globally.
+                    </p>
+                </div>
+
+                <!-- COL 2: QUICK LINKS -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-gold-400 font-serif font-bold text-sm tracking-wider uppercase">Catalogue Sections</h4>
+                    <ul class="space-y-2 text-xs text-white/70">
+                        <li><a href="#catalogue" onclick="filterCategory('decor')" class="hover:text-gold-400">Architectural Brass Décor</a></li>
+                        <li><a href="#catalogue" onclick="filterCategory('idols')" class="hover:text-gold-400">Sacred Deities & Lost-Wax Idols</a></li>
+                        <li><a href="#catalogue" onclick="filterCategory('paintings')" class="hover:text-gold-400">Tanjore & Heritage Fine Paintings</a></li>
+                        <li><a href="#catalogue" class="hover:text-gold-400">Custom Bids & Large Sculptures</a></li>
+                    </ul>
+                </div>
+
+                <!-- COL 3: EXPORT CREDENTIALS -->
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="text-gold-400 font-serif font-bold text-sm tracking-wider uppercase">Global Export Compliance</h4>
+                    <p class="text-xs text-white/70">All exported brassware complies with international metal purity standards, fumigated wooden crate packing, and phytosanitary declarations.</p>
+                    <div class="pt-2 flex items-center gap-3 text-gold-400 text-lg">
+                        <i class="fa-brands fa-instagram hover:text-white cursor-pointer"></i>
+                        <i class="fa-brands fa-linkedin hover:text-white cursor-pointer"></i>
+                        <i class="fa-brands fa-whatsapp hover:text-white cursor-pointer"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-white/50">
+                <p>&copy; 2026 Cauveran Decorative Arts. All Rights Reserved. B2B Export Portal.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-gold-400">Export Terms</a>
+                    <a href="#" class="hover:text-gold-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-gold-400">HS Code Index</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- RFQ / QUOTE BASKET DRAWER (SLIDE OVER) -->
+    <div id="rfq-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <!-- Backdrop -->
+        <div onclick="toggleRFQDrawer()" class="absolute inset-0 bg-emerald-950/80 backdrop-blur-sm transition-opacity"></div>
+
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                
+                <!-- DRAWER HEADER -->
+                <div class="p-6 bg-emerald-900 text-white flex items-center justify-between border-b border-gold-500/20">
+                    <div>
+                        <h3 class="font-serif text-xl text-cream font-bold">Bulk Enquiry Basket</h3>
+                        <p class="text-xs text-gold-400">Selected SKUs for Quote Request</p>
+                    </div>
+                    <button onclick="toggleRFQDrawer()" class="text-white/80 hover:text-gold-400 text-xl">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- DRAWER BODY (ITEMS LIST) -->
+                <div id="rfq-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Dynamic items will render here -->
+                </div>
+
+                <!-- DRAWER FOOTER / RFQ FORM -->
+                <div class="p-6 bg-sand border-t border-charcoal/10 space-y-4">
+                    <form onsubmit="submitRFQBasket(event)" class="space-y-3">
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase text-charcoal/80 mb-1">Company Name *</label>
+                            <input type="text" id="rfq-company" required placeholder="Your business name" class="w-full px-3 py-2 rounded-lg bg-white border border-charcoal/20 text-xs">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-charcoal/80 mb-1">Work Email *</label>
+                                <input type="email" id="rfq-email" required placeholder="email@domain.com" class="w-full px-3 py-2 rounded-lg bg-white border border-charcoal/20 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-charcoal/80 mb-1">Target Port / Country *</label>
+                                <input type="text" id="rfq-port" required placeholder="e.g. Port of London" class="w-full px-3 py-2 rounded-lg bg-white border border-charcoal/20 text-xs">
+                            </div>
+                        </div>
+
+                        <button type="submit" id="rfq-submit-btn" class="w-full py-3.5 bg-gold-500 hover:bg-gold-400 text-emerald-950 font-bold text-xs uppercase tracking-widest rounded-xl transition-all shadow-md mt-2">
+                            Request Freight & Bulk Quote <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION MODAL -->
+    <div id="notification-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-emerald-950/80 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full text-center space-y-4 border border-gold-500/30 shadow-2xl">
+            <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-900 mx-auto flex items-center justify-center text-3xl">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="font-serif text-2xl text-emerald-950 font-bold" id="modal-title">Enquiry Received</h3>
+            <p class="text-xs text-charcoal/80 leading-relaxed" id="modal-message">Thank you. Our international trade desk has logged your selected SKUs and will dispatch a formal Proforma Quote to your email within 24 hours.</p>
+            <button onclick="closeModal()" class="w-full py-3 bg-emerald-900 text-gold-400 text-xs font-bold uppercase tracking-wider rounded-xl">Continue Browsing</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // SAMPLE PRODUCT CATALOGUE DATA
+        const products = [
+            {
+                sku: 'SKU-BRS-101',
+                title: 'Nataraja Dancing Shiva Sculpture',
+                category: 'idols',
+                categoryLabel: 'Deities & Idols',
+                dimensions: '36" H x 28" W x 10" D',
+                weight: '24.5 kg (54 lbs)',
+                finish: 'Antique Lost-Wax Bronze-Brass',
+                hsCode: '8306.29.00',
+                image: 'https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                sku: 'SKU-BRS-204',
+                title: 'Ornate Royal Brass Peacock Urli',
+                category: 'decor',
+                categoryLabel: 'Brass Décor',
+                dimensions: '18" Diameter x 14" H',
+                weight: '12.8 kg (28 lbs)',
+                finish: 'Hand-Polished High Polish Gold',
+                hsCode: '8306.29.00',
+                image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                sku: 'SKU-PNT-502',
+                title: '22K Gold Foil Embossed Tanjore Painting',
+                category: 'paintings',
+                categoryLabel: 'Fine Paintings',
+                dimensions: '48" H x 36" W x 3" Depth Frame',
+                weight: '18.0 kg (39 lbs)',
+                finish: 'Teak Wood Frame & Teardrop Gems',
+                hsCode: '9701.10.00',
+                image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                sku: 'SKU-BRS-108',
+                title: 'Classic Ganesha Idol with Arch',
+                category: 'idols',
+                categoryLabel: 'Deities & Idols',
+                dimensions: '24" H x 16" W x 8" D',
+                weight: '15.2 kg (33 lbs)',
+                finish: 'Vintage Patina Green-Gold',
+                hsCode: '8306.29.00',
+                image: 'https://images.unsplash.com/photo-1608976328267-e673d3ed06ce?auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                sku: 'SKU-BRS-309',
+                title: 'Temple Brass Oil Lamp (Thooku Vilakku)',
+                category: 'decor',
+                categoryLabel: 'Brass Décor',
+                dimensions: '42" Height with Chain',
+                weight: '8.5 kg (18 lbs)',
+                finish: 'Traditional Matte Brass',
+                hsCode: '8306.29.00',
+                image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80'
+            },
+            {
+                sku: 'SKU-PNT-509',
+                title: 'Heritage Heritage Procession Canvas Painting',
+                category: 'paintings',
+                categoryLabel: 'Fine Paintings',
+                dimensions: '60" W x 36" H',
+                weight: '6.5 kg (14 lbs)',
+                finish: 'Natural Pigments on Silk-Cotton',
+                hsCode: '9701.10.00',
+                image: 'https://images.unsplash.com/photo-1582561424760-0321d75e81fa?auto=format&fit=crop&w=800&q=80'
+            }
+        ];
+
+        // RFQ BASKET STATE
+        let rfqBasket = [];
+
+        // INITIALIZE ON LOAD
+        window.onload = function() {
+            renderCatalogue('all');
+            updateRFQBadge();
+        };
+
+        // RENDER CATALOGUE PRODUCTS
+        function renderCatalogue(category) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            const filtered = category === 'all' 
+                ? products 
+                : products.filter(p => p.category === category);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl overflow-hidden border border-charcoal/5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group";
+                
+                card.innerHTML = `
+                    <div class="relative h-72 bg-sand overflow-hidden">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x600/0D2818/D4AF37?text=${encodeURIComponent(p.title)}';">
+                        <span class="absolute top-4 left-4 bg-emerald-950/80 backdrop-blur-md text-gold-400 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-gold-500/30">
+                            ${p.sku}
+                        </span>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-[10px] text-gold-600 font-bold uppercase tracking-wider">${p.categoryLabel}</span>
+                            <h3 class="font-serif text-2xl text-emerald-950 font-semibold mt-1">${p.title}</h3>
+                        </div>
+
+                        <!-- SPECS PANEL -->
+                        <div class="bg-sand/60 p-3.5 rounded-2xl text-xs space-y-1.5 border border-charcoal/5">
+                            <div class="flex justify-between">
+                                <span class="text-charcoal/60">Dimensions:</span>
+                                <span class="font-medium text-emerald-950">${p.dimensions}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-charcoal/60">Weight:</span>
+                                <span class="font-medium text-emerald-950">${p.weight}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-charcoal/60">Finish:</span>
+                                <span class="font-medium text-emerald-950">${p.finish}</span>
+                            </div>
+                        </div>
+
+                        <!-- ACTIONS -->
+                        <div class="pt-2 flex items-center gap-2">
+                            <button onclick="addToRFQ('${p.sku}', '${p.title.replace(/'/g, "\\'")}', '${p.categoryLabel}', '${p.image}')" class="flex-1 py-3 bg-emerald-900 hover:bg-emerald-800 text-gold-400 font-semibold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm">
+                                <i class="fa-solid fa-plus text-xs"></i> Add to Quote
+                            </button>
+                            <button onclick="downloadSKUDetailsPDF('${p.sku}', '${p.title.replace(/'/g, "\\'")}')" class="p-3 bg-sand hover:bg-gold-500 hover:text-emerald-950 text-emerald-900 rounded-xl transition-all" title="Download SKU Tech Sheet">
+                                <i class="fa-solid fa-file-pdf"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // FILTER TABS HANDLER
+        function filterCategory(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-emerald-900', 'text-gold-400');
+                btn.classList.add('bg-sand', 'text-charcoal');
+            });
+
+            const activeBtn = document.getElementById(`btn-${category}`);
+            if(activeBtn) {
+                activeBtn.classList.remove('bg-sand', 'text-charcoal');
+                activeBtn.classList.add('bg-emerald-900', 'text-gold-400');
+            }
+
+            renderCatalogue(category);
+        }
+
+        // ADD TO RFQ BASKET
+        function addToRFQ(sku, title, category, image) {
+            const existing = rfqBasket.find(item => item.sku === sku);
+            if(existing) {
+                existing.qty += 1;
+            } else {
+                rfqBasket.push({ sku, title, category, image, qty: 1 });
+            }
+            updateRFQBadge();
+            renderRFQBasket();
+            
+            // Auto open drawer to confirm
+            toggleRFQDrawer(true);
+        }
+
+        // UPDATE BADGE
+        function updateRFQBadge() {
+            const badge = document.getElementById('rfq-badge');
+            const totalItems = rfqBasket.reduce((sum, i) => sum + i.qty, 0);
+            if(totalItems > 0) {
+                badge.innerText = totalItems;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        // RENDER RFQ DRAWER BASKET
+        function renderRFQBasket() {
+            const container = document.getElementById('rfq-items-container');
+            if(rfqBasket.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-charcoal/50 space-y-3">
+                        <i class="fa-solid fa-boxes-packing text-4xl text-emerald-900/30"></i>
+                        <p class="text-sm">Your quote basket is empty.</p>
+                        <p class="text-xs">Browse our catalogue and add SKUs for bulk pricing.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = rfqBasket.map((item, idx) => `
+                <div class="flex items-center gap-3 p-3 bg-sand rounded-xl border border-charcoal/10">
+                    <img src="${item.image}" class="w-14 h-14 object-cover rounded-lg">
+                    <div class="flex-1">
+                        <span class="text-[9px] text-gold-600 font-bold uppercase tracking-wider">${item.sku}</span>
+                        <h4 class="font-serif text-sm font-bold text-emerald-950">${item.title}</h4>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-xs text-charcoal/70">Qty:</span>
+                            <button onclick="changeQty(${idx}, -1)" class="w-5 h-5 bg-white rounded border text-xs font-bold">-</button>
+                            <span class="text-xs font-bold text-emerald-950 px-1">${item.qty}</span>
+                            <button onclick="changeQty(${idx}, 1)" class="w-5 h-5 bg-white rounded border text-xs font-bold">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removeRFQItem(${idx})" class="text-red-700 hover:text-red-900 text-xs p-1">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function changeQty(index, delta) {
+            rfqBasket[index].qty += delta;
+            if(rfqBasket[index].qty <= 0) {
+                rfqBasket.splice(index, 1);
+            }
+            updateRFQBadge();
+            renderRFQBasket();
+        }
+
+        function removeRFQItem(index) {
+            rfqBasket.splice(index, 1);
+            updateRFQBadge();
+            renderRFQBasket();
+        }
+
+        // TOGGLE DRAWER
+        function toggleRFQDrawer(forceOpen = false) {
+            const drawer = document.getElementById('rfq-drawer');
+            if(forceOpen || drawer.classList.contains('hidden')) {
+                renderRFQBasket();
+                drawer.classList.remove('hidden');
+            } else {
+                drawer.classList.add('hidden');
+            }
+        }
+
+        // MOBILE MENU
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // SUBMIT RFQ BASKET
+        function submitRFQBasket(e) {
+            e.preventDefault();
+            if(rfqBasket.length === 0) {
+                alert('Please add at least one product SKU to your basket before requesting a quote.');
+                return;
+            }
+
+            const company = document.getElementById('rfq-company').value;
+            const email = document.getElementById('rfq-email').value;
+            const port = document.getElementById('rfq-port').value;
+
+            // Reset basket & UI
+            rfqBasket = [];
+            updateRFQBadge();
+            toggleRFQDrawer();
+
+            // Show confirmation modal
+            showModal('Bulk RFQ Submitted', `Thank you, ${company}. We have received your query for destination port "${port}". An itemized Proforma quote for your selected SKUs has been queued for ${email}.`);
+        }
+
+        // DIRECT CONTACT FORM SUBMIT
+        function handleDirectFormSubmit(e) {
+            e.preventDefault();
+            showModal('Enquiry Registered', 'Thank you for reaching out to Cauveran Trade Desk. An export specialist will respond to your corporate email within 12-24 hours.');
+        }
+
+        // DOWNLOAD PDF SIMULATOR
+        function downloadMasterCataloguePDF() {
+            showModal('Preparing PDF Catalogue', 'Generating full master export catalogue PDF with 2026-2027 collection and dimensions. Your download will start automatically.');
+        }
+
+        function downloadSKUDetailsPDF(sku, title) {
+            showModal('Downloading Tech Sheet', `Generating export specification teardown PDF for ${sku} - ${title}. Package dimensions and container fit details included.`);
+        }
+
+        // MODAL UTILS
+        function showModal(title, msg) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = msg;
+            document.getElementById('notification-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('notification-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

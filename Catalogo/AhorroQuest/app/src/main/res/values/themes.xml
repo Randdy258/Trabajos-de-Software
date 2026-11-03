@@ -1,0 +1,4 @@
+<resources>
+    <!-- DayNight: sigue automáticamente el modo claro/oscuro del sistema -->
+    <style name="Theme.Ahorro" parent="Theme.Material3.DayNight.NoActionBar" />
+</resources>
