@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Generador de cobros por transferencia</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--tx:#1b1f24;--mut:#667085;--bd:#d9dde3;--ac:#0f766e;--ac2:#fff;--wa:#128c4a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111418;--card:#1a1f26;--tx:#eceff3;--mut:#9aa4b2;--bd:#2c3440;--ac:#2dd4bf;--ac2:#06201d;--wa:#25d366;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111418;--card:#1a1f26;--tx:#eceff3;--mut:#9aa4b2;--bd:#2c3440;--ac:#2dd4bf;--ac2:#06201d;--wa:#25d366;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:1.35rem;margin:8px 0 2px}
+.sub{color:var(--mut);margin:0 0 16px;font-size:.92rem}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:14px}
+label{display:block;font-size:.85rem;color:var(--mut);margin:10px 0 4px}
+input,textarea{width:100%;padding:11px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+textarea{min-height:230px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button,a.btn{display:inline-block;text-align:center;text-decoration:none;border:0;border-radius:8px;padding:12px 14px;font:600 .95rem inherit;font-family:inherit;cursor:pointer;background:var(--ac);color:var(--ac2)}
+button.sec,a.sec{background:transparent;color:var(--tx);border:1px solid var(--bd)}
+a.wa{background:var(--wa);color:#fff}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.big{width:100%;margin-top:14px;font-size:1rem}
+summary{cursor:pointer;font-weight:600}
+.msg{color:var(--mut);font-size:.85rem;min-height:1.2em;margin-top:6px}
+ol{padding-left:20px;margin:8px 0 0}
+#recibo{display:none}
+@media print{body *{visibility:hidden}#recibo,#recibo *{visibility:visible}#recibo{display:block;position:absolute;inset:0;padding:32px;color:#000;background:#fff}#recibo table{width:100%;border-collapse:collapse;margin-top:16px}#recibo td{padding:8px;border-bottom:1px solid #ccc}}
+</style>
+</head>
+<body>
+<main>
+<h1>Cobro por transferencia</h1>
+<p class="sub">Captura los datos, genera el mensaje y envíalo por WhatsApp o correo.</p>
+
+<details class="card" id="cfgBox">
+<summary>⚙️ Mis datos bancarios (se guardan en este dispositivo)</summary>
+<label for="negocio">Nombre o negocio (aparece en la firma)</label><input id="negocio" autocomplete="off">
+<label for="titular">Titular de la cuenta</label><input id="titular" autocomplete="off">
+<div class="row">
+<div><label for="banco">Banco</label><input id="banco" autocomplete="off"></div>
+<div><label for="clabe">CLABE (18 dígitos)</label><input id="clabe" inputmode="numeric" maxlength="22" autocomplete="off"></div>
+</div>
+<div class="row">
+<div><label for="plazo">Plazo de pago (días)</label><input id="plazo" type="number" min="0" value="3"></div>
+<div><label for="moneda">Moneda</label><input id="moneda" value="MXN"></div>
+</div>
+<label for="lada">Código de país para WhatsApp (sin +)</label><input id="lada" inputmode="numeric" value="52">
+<button class="big" id="guardar" type="button">Guardar mis datos</button>
+<div class="msg" id="cfgMsg"></div>
+</details>
+
+<section class="card">
+<label for="cliente" style="margin-top:0">Nombre del cliente</label><input id="cliente" autocomplete="off">
+<div class="row">
+<div><label for="importe">Importe</label><input id="importe" inputmode="decimal" placeholder="1500.00"></div>
+<div><label for="dias">Plazo (días)</label><input id="dias" type="number" min="0" placeholder="por defecto"></div>
+</div>
+<label for="concepto">Motivo del pago</label><input id="concepto" autocomplete="off" placeholder="Ej. Diseño de página web, 50% de anticipo">
+<div class="row">
+<div><label for="tel">WhatsApp del cliente (opcional)</label><input id="tel" inputmode="tel" placeholder="10 dígitos"></div>
+<div><label for="mail">Correo del cliente (opcional)</label><input id="mail" type="email" autocomplete="off"></div>
+</div>
+<button class="big" id="generar" type="button">Generar mensaje</button>
+<div class="msg" id="err"></div>
+</section>
+
+<section class="card" id="salida" hidden>
+<label for="texto" style="margin-top:0">Mensaje (puedes editarlo antes de enviar)</label>
+<textarea id="texto"></textarea>
+<div class="acts">
+<button id="copiar" type="button">📋 Copiar</button>
+<a class="btn wa" id="wa" target="_blank" rel="noopener">💬 WhatsApp</a>
+<a class="btn sec" id="correo" target="_blank" rel="noopener">✉️ Correo</a>
+<button class="sec" id="imprimir" type="button">🖨️ PDF / Imprimir</button>
+</div>
+<div class="msg" id="okMsg"></div>
+</section>
+
+<details class="card">
+<summary>📖 Guía rápida</summary>
+<ol>
+<li>Abre «Mis datos bancarios», llena titular, banco, CLABE, plazo y pulsa Guardar. Para cambiar de cuenta, edita y guarda de nuevo.</li>
+<li>Captura cliente, importe y motivo; pulsa «Generar mensaje».</li>
+<li>«Copiar» para pegar donde quieras; «WhatsApp» abre el chat con el texto listo; «Correo» abre tu app de correo con asunto y cuerpo.</li>
+<li>«PDF / Imprimir» abre el diálogo de impresión: elige «Guardar como PDF» y adjúntalo al correo.</li>
+<li>Los datos se guardan solo en el navegador del dispositivo donde los captures; en el móvil y en la computadora hay que capturarlos una vez en cada uno.</li>
+</ol>
+</details>
+<div id="recibo" aria-hidden="true"></div>
+</main>
+<script>
+(function(){
+var KEY="cobros_cfg_v1";
+var C=["negocio","titular","banco","clabe","plazo","moneda","lada"];
+var $=function(i){return document.getElementById(i)};
+function cargar(){try{var d=JSON.parse(localStorage.getItem(KEY)||"{}");C.forEach(function(k){if(d[k]!==undefined)$(k).value=d[k]});if(!d.clabe)$("cfgBox").open=true}catch(e){$("cfgBox").open=true}}
+function cfg(){var o={};C.forEach(function(k){o[k]=$(k).value.trim()});return o}
+$("guardar").onclick=function(){try{localStorage.setItem(KEY,JSON.stringify(cfg()));$("cfgMsg").textContent="Datos guardados ✓"}catch(e){$("cfgMsg").textContent="No se pudo guardar en este navegador; los datos valen mientras la página esté abierta."}};
+function fmt(n,m){try{return new Intl.NumberFormat("es-MX",{style:"currency",currency:m||"MXN"}).format(n)}catch(e){return "$"+n.toFixed(2)+" "+m}}
+var datos={};
+function generar(){
+var c=cfg(),cl=$("cliente").value.trim(),mot=$("concepto").value.trim(),imp=parseFloat($("importe").value.replace(/,/g,""));
+if(!c.titular||!c.banco||!c.clabe){$("err").textContent="Completa primero tus datos bancarios.";$("cfgBox").open=true;return}
+if(!cl||!mot||!(imp>0)){$("err").textContent="Faltan el cliente, el importe o el motivo.";return}
+$("err").textContent="";
+var dias=$("dias").value!==""?parseInt($("dias").value,10):parseInt(c.plazo||"0",10);
+var f=new Date();f.setDate(f.getDate()+(dias||0));
+var fecha=f.toLocaleDateString("es-MX",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+var monto=fmt(imp,c.moneda||"MXN");
+var t="Hola "+cl+" 👋\n\nTe comparto los datos para realizar tu pago por transferencia bancaria:\n\n"+
+"💰 Monto: "+monto+"\n📝 Concepto: "+mot+"\n🏦 Banco: "+c.banco+"\n👤 Titular: "+c.titular+"\n🔢 CLABE: "+c.clabe+"\n\n"+
+"⏰ Fecha límite de pago: "+fecha+(dias?" ("+dias+" días)":"")+".\n\n"+
+"Al realizar la transferencia, por favor envíame tu comprobante por este medio. ¡Muchas gracias!"+(c.negocio?"\n\n— "+c.negocio:"");
+datos={cl:cl,mot:mot,monto:monto,c:c,fecha:fecha};
+$("texto").value=t;$("salida").hidden=false;enlaces();recibo();
+$("salida").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function enlaces(){
+var t=$("texto").value,c=cfg(),tel=$("tel").value.replace(/\D/g,"");
+if(tel.length===10&&c.lada)tel=c.lada+tel;
+$("wa").href="https://wa.me/"+tel+"?text="+encodeURIComponent(t);
+var asunto="Datos de pago: "+(datos.mot||"");
+$("correo").href="mailto:"+encodeURIComponent($("mail").value.trim())+"?subject="+encodeURIComponent(asunto)+"&body="+encodeURIComponent(t);
+}
+function recibo(){
+var r=$("recibo"),d=datos,c=d.c;r.textContent="";
+var h=document.createElement("h1");h.textContent="Solicitud de pago por transferencia";r.appendChild(h);
+var p=document.createElement("p");p.textContent="Cliente: "+d.cl+(c.negocio?"  ·  "+c.negocio:"");r.appendChild(p);
+var tb=document.createElement("table");
+[["Monto",d.monto],["Concepto",d.mot],["Banco",c.banco],["Titular",c.titular],["CLABE",c.clabe],["Fecha límite",d.fecha]].forEach(function(x){
+var tr=document.createElement("tr"),a=document.createElement("td"),b=document.createElement("td");a.textContent=x[0];a.style.fontWeight="bold";b.textContent=x[1];tr.appendChild(a);tr.appendChild(b);tb.appendChild(tr)});
+r.appendChild(tb);
+var n=document.createElement("p");n.textContent="Por favor envía tu comprobante de transferencia. ¡Gracias!";r.appendChild(n);
+}
+$("generar").onclick=generar;
+$("texto").addEventListener("input",enlaces);
+["tel","mail"].forEach(function(i){$(i).addEventListener("input",enlaces)});
+$("copiar").onclick=function(){
+var t=$("texto").value;
+function ok(){$("okMsg").textContent="Copiado ✓"}
+function viejo(){$("texto").select();try{document.execCommand("copy");ok()}catch(e){$("okMsg").textContent="Selecciona el texto y cópialo manualmente."}}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,viejo)}else viejo();
+};
+$("imprimir").onclick=function(){recibo();try{window.print()}catch(e){$("okMsg").textContent="Imprime desde el menú del navegador (Ctrl+P)."}};
+cargar();
+})();
+</script>
+</body>
+</html>
