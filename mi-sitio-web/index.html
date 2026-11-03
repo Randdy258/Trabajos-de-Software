@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitio Web Corporativo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 text-blue-900 font-bold text-xl tracking-tight">
+                <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+                <span>[TuLogo]</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
+                <button onclick="showPage('inicio')" class="nav-link hover:text-blue-600 transition-colors py-2 active" id="nav-inicio">Inicio</button>
+                <button onclick="showPage('nosotros')" class="nav-link hover:text-blue-600 transition-colors py-2" id="nav-nosotros">Quiénes somos</button>
+                <button onclick="showPage('servicios')" class="nav-link hover:text-blue-600 transition-colors py-2" id="nav-servicios">Servicios</button>
+                <button onclick="showPage('testimonios')" class="nav-link hover:text-blue-600 transition-colors py-2" id="nav-testimonios">Testimonios y Zonas</button>
+                <button onclick="showPage('contacto')" class="nav-link hover:text-blue-600 transition-colors py-2" id="nav-contacto">Contacto</button>
+            </nav>
+
+            <div class="hidden md:flex items-center">
+                <button onclick="showPage('contacto')" class="bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm px-5 py-2.5 rounded-lg shadow-sm hover:shadow transition-all">
+                    Solicitar Cotización
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3">
+            <button onclick="showPage('inicio'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-gray-700 hover:text-blue-600">Inicio</button>
+            <button onclick="showPage('nosotros'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-gray-700 hover:text-blue-600">Quiénes somos</button>
+            <button onclick="showPage('servicios'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-gray-700 hover:text-blue-600">Servicios</button>
+            <button onclick="showPage('testimonios'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-gray-700 hover:text-blue-600">Testimonios y Zonas</button>
+            <button onclick="showPage('contacto'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-gray-700 hover:text-blue-600">Contacto</button>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- INICIO -->
+        <section id="page-inicio" class="page-section">
+            <div class="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-24 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-200 rounded-full text-xs font-semibold uppercase tracking-wider mb-4 border border-blue-400/30">Soluciones Empresariales</span>
+                        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-6">Impulsamos el Crecimiento de tu Empresa</h1>
+                        <p class="text-blue-100 text-lg mb-8 leading-relaxed">Ofrecemos servicios integrales diseñados para optimizar tus procesos, aumentar tu rentabilidad y posicionar tu marca en el mercado actual.</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="showPage('contacto')" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3.5 rounded-lg shadow-lg hover:shadow-xl transition-all text-center">Contáctanos Hoy</button>
+                            <button onclick="showPage('servicios')" class="border border-blue-300/40 hover:bg-white/10 text-white font-semibold px-6 py-3.5 rounded-lg transition-all text-center">Ver Servicios</button>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="w-full h-80 bg-blue-800/50 rounded-2xl border border-blue-400/20 flex items-center justify-center text-blue-200 shadow-2xl overflow-hidden">
+                            <div class="text-center p-8">
+                                <i class="fa-regular fa-image text-6xl mb-4 text-blue-300/60"></i>
+                                <p class="text-sm text-blue-200">[Fotografía Principal de la Empresa]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlights -->
+            <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-award"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Calidad Garantizada</h3>
+                        <p class="text-gray-600 text-sm">Estándares internacionales en la ejecución de cada uno de nuestros proyectos y servicios.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-user-shield"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Atención Personalizada</h3>
+                        <p class="text-gray-600 text-sm">Acompañamiento continuo adaptado a las necesidades específicas de tu negocio.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-bolt"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Estrategia y Rapidez</h3>
+                        <p class="text-gray-600 text-sm">Respuestas ágiles y soluciones eficientes para maximizar tus resultados a tiempo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIÉNES SOMOS -->
+        <section id="page-nosotros" class="page-section hidden py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Quiénes Somos</h2>
+                <p class="mt-4 text-lg text-gray-600">Conoce la historia, visión y compromiso que impulsan el éxito de nuestra organización.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-bold text-gray-900">Nuestra Historia</h3>
+                    <p class="text-gray-600 leading-relaxed">[Insertar descripción sobre la fundación, trayectoria y los valores fundamentales de tu empresa. Este espacio está diseñado para comunicar confianza y profesionalismo a tus clientes.]</p>
+                    <p class="text-gray-600 leading-relaxed">Trabajamos día a día con el compromiso firme de ofrecer soluciones sólidas, innovadoras e integrales.</p>
+                </div>
+                <div class="h-64 bg-gray-200 rounded-xl flex items-center justify-center text-gray-500 border border-gray-300">
+                    <p class="text-sm">[Imagen del Equipo / Oficina]</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-8 bg-blue-50 rounded-2xl border border-blue-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-3"><i class="fa-solid fa-bullseye mr-2 text-blue-600"></i> Misión</h4>
+                    <p class="text-gray-700 text-sm leading-relaxed">[Proporcionar servicios de máxima calidad que impulsen la productividad y el crecimiento de nuestros clientes.]</p>
+                </div>
+                <div class="p-8 bg-indigo-50 rounded-2xl border border-indigo-100">
+                    <h4 class="text-xl font-bold text-indigo-900 mb-3"><i class="fa-solid fa-eye mr-2 text-indigo-600"></i> Visión</h4>
+                    <p class="text-gray-700 text-sm leading-relaxed">[Ser reconocidos como el socio estratégico líder en nuestro sector a nivel regional y nacional.]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICIOS -->
+        <section id="page-servicios" class="page-section hidden py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Nuestros Servicios</h2>
+                <p class="mt-4 text-lg text-gray-600">Soluciones especializadas diseñadas a la medida de tus objetivos.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-gears"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">[Nombre Servicio 1]</h3>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">[Descripción detallada del primer servicio principal. Explicación del valor agregado y beneficios clave.]</p>
+                    </div>
+                    <button onclick="showPage('contacto')" class="text-blue-600 font-semibold text-sm hover:text-blue-800 flex items-center">Consultar servicio <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">[Nombre Servicio 2]</h3>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">[Descripción detallada del segundo servicio principal. Explicación del valor agregado y beneficios clave.]</p>
+                    </div>
+                    <button onclick="showPage('contacto')" class="text-blue-600 font-semibold text-sm hover:text-blue-800 flex items-center">Consultar servicio <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">[Nombre Servicio 3]</h3>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">[Descripción detallada del tercer servicio principal. Explicación del valor agregado y beneficios clave.]</p>
+                    </div>
+                    <button onclick="showPage('contacto')" class="text-blue-600 font-semibold text-sm hover:text-blue-800 flex items-center">Consultar servicio <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIOS Y ZONAS -->
+        <section id="page-testimonios" class="page-section hidden py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Testimonios y Cobertura</h2>
+                <p class="mt-4 text-lg text-gray-600">Lo que opinan nuestros clientes y las zonas donde brindamos nuestros servicios.</p>
+            </div>
+
+            <!-- Testimonios -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Lo que dicen nuestros clientes</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                        <div class="flex text-amber-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-gray-600 italic mb-6">"[Excelente servicio y atención profesional. Superaron nuestras expectativas en tiempos de entrega y calidad.]"</p>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-600">C1</div>
+                            <div>
+                                <p class="font-bold text-gray-900 text-sm">[Nombre del Cliente]</p>
+                                <p class="text-xs text-gray-500">[Cargo / Empresa]</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                        <div class="flex text-amber-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-gray-600 italic mb-6">"[Un socio clave para el desarrollo de nuestras operaciones. Respuestas rápidas y total compromiso.]"</p>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-600">C2</div>
+                            <div>
+                                <p class="font-bold text-gray-900 text-sm">[Nombre del Cliente]</p>
+                                <p class="text-xs text-gray-500">[Cargo / Empresa]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zonas de Operación -->
+            <div class="bg-gray-100 rounded-2xl p-8 border border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Zonas en las que Operamos</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-xl mx-auto">Ofrecemos cobertura directa e inmediata en las siguientes regiones:</p>
+                <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-white p-4 rounded-lg shadow-sm font-semibold text-gray-800 border border-gray-200"><i class="fa-solid fa-location-dot text-blue-600 mr-2"></i>[Zona / Ciudad 1]</div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm font-semibold text-gray-800 border border-gray-200"><i class="fa-solid fa-location-dot text-blue-600 mr-2"></i>[Zona / Ciudad 2]</div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm font-semibold text-gray-800 border border-gray-200"><i class="fa-solid fa-location-dot text-blue-600 mr-2"></i>[Zona / Ciudad 3]</div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm font-semibold text-gray-800 border border-gray-200"><i class="fa-solid fa-location-dot text-blue-600 mr-2"></i>[Zona / Ciudad 4]</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="page-contacto" class="page-section hidden py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Ponte en Contacto</h2>
+                <p class="mt-4 text-lg text-gray-600">Estamos listos para atender tus requerimientos. Escríbenos y te responderemos a la brevedad.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Información de Contacto -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Información General</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-gray-900">Dirección</p>
+                                    <p class="text-sm text-gray-600">[Av. Principal #123, Ciudad, País]</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-envelope"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-gray-900">Correo Electrónico</p>
+                                    <p class="text-sm text-gray-600">[contacto@tuempresa.com]</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-phone"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-gray-900">Teléfono</p>
+                                    <p class="text-sm text-gray-600">[+00 000 000 0000]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario -->
+                <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div>
+                            <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo *</label>
+                            <input type="text" id="nombre" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm transition-all" placeholder="Tu nombre">
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico *</label>
+                            <input type="email" id="email" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm transition-all" placeholder="correo@ejemplo.com">
+                        </div>
+
+                        <div>
+                            <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-1">Mensaje *</label>
+                            <textarea id="mensaje" rows="4" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm transition-all" placeholder="¿En qué podemos ayudarte?"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow transition-colors text-sm">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Confirmación -->
+    <div id="modal-success" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center space-y-4 shadow-xl">
+            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">¡Mensaje Enviado!</h3>
+            <p class="text-sm text-gray-600">Gracias por contactarnos. Hemos recibido tu mensaje y te responderemos lo antes posible.</p>
+            <button onclick="closeModal()" class="w-full bg-gray-900 hover:bg-gray-800 text-white font-medium py-2 rounded-lg text-sm transition-colors">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800 mt-12 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
+            <p>&copy; 2026 [Nombre de la Empresa]. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
