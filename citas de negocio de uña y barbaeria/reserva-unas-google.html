@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lacre Nail Studio · Reserva tu cita</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF7FC;--surface:#fff;--ink:#2B1535;--muted:#6E5A78;--line:#E6DAEB;--accent:#D6246E;--accent-ink:#fff;--soft:#FBE3EE;--mint:#CDEFE0;--wa:#1FA855;--bubble:#DCF8C6;--bubble-ink:#1c2b1c;--h:"Bricolage Grotesque","Trebuchet MS",sans-serif;--b:"DM Sans",system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1B0E22;--surface:#2A1633;--ink:#F6ECF8;--muted:#B9A4C4;--line:#45284F;--accent:#FF5A9A;--accent-ink:#2B0A19;--soft:#4A1F37;--mint:#1F4A3A;--bubble:#1F4A33;--bubble-ink:#E8F7EA}}
+:root[data-theme="dark"]{--bg:#1B0E22;--surface:#2A1633;--ink:#F6ECF8;--muted:#B9A4C4;--line:#45284F;--accent:#FF5A9A;--accent-ink:#2B0A19;--soft:#4A1F37;--mint:#1F4A3A;--bubble:#1F4A33;--bubble-ink:#E8F7EA}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--b)}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 20px 48px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:8px 0 28px}
+.logo{font:800 20px var(--h);letter-spacing:-.02em}
+.logo i{display:inline-block;width:14px;height:20px;background:var(--accent);border-radius:50% 50% 45% 45%;margin-right:8px;vertical-align:-3px;transform:rotate(14deg)}
+nav span{color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:start}
+@media(min-width:900px){.grid{grid-template-columns:1fr 1.05fr;gap:56px}}
+h1{font:800 clamp(38px,7vw,68px)/1 var(--h);letter-spacing:-.035em;margin:0 0 18px}
+.lead{font-size:18px;color:var(--muted);max-width:46ch;margin:0 0 24px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}
+.facts li{background:var(--soft);padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:20px;max-width:100%}
+@media(min-width:480px){.card{padding:26px}}
+.track{display:flex;gap:6px;margin-bottom:20px}
+.track b{flex:1;height:6px;border-radius:9px;background:var(--line);transition:background .25s}
+.track b.on{background:var(--accent)}
+.stepname{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-bottom:6px}
+h2{font:700 24px/1.15 var(--h);margin:0 0 16px;letter-spacing:-.02em}
+h3{font:700 14px var(--b);margin:20px 0 10px;color:var(--muted)}
+.opts{display:grid;gap:10px}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;width:100%;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;font:inherit;cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--accent)}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--soft)}
+.opt strong{display:block;font-weight:700}
+.opt small{color:var(--muted)}
+.price{font-weight:700;white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;font:500 15px var(--b);cursor:pointer;min-height:44px}
+.chip:hover:not(:disabled){border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip:disabled{opacity:.4;text-decoration:line-through;cursor:not-allowed}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.day{flex:0 0 auto;min-width:62px;text-align:center;border-radius:16px;padding:10px 8px;line-height:1.2}
+.day small{display:block;color:inherit;opacity:.75;font-size:12px}
+.day b{font:700 20px var(--h)}
+label{display:block;font-weight:500;font-size:14px;margin:0 0 6px}
+input{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;margin-bottom:14px}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.err{color:var(--accent);font-size:13px;min-height:18px;margin:-8px 0 8px}
+.bubble{background:var(--bubble);color:var(--bubble-ink);border-radius:16px 16px 4px 16px;padding:14px 16px;font-size:15px;white-space:pre-wrap;margin:6px 0 18px;overflow-wrap:anywhere}
+.nav{display:flex;gap:10px;margin-top:22px}
+.btn{flex:1;display:inline-flex;justify-content:center;align-items:center;gap:8px;min-height:50px;border-radius:14px;border:0;font:700 16px var(--b);cursor:pointer;text-decoration:none;padding:0 18px}
+.btn.main{background:var(--accent);color:var(--accent-ink)}
+.btn.main:disabled{opacity:.35;cursor:not-allowed}
+.btn.back{flex:0 0 auto;background:transparent;color:var(--muted);border:1.5px solid var(--line)}
+.btn.wa{background:var(--wa);color:#fff}
+.pane[hidden]{display:none}
+.pane{animation:in .22s ease-out}
+@keyframes in{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.pane{animation:none}}
+.note{font-size:13px;color:var(--muted);margin:12px 0 0;text-align:center}
+.or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;margin:14px 0 18px}.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+#gbtn{display:flex;justify-content:center;min-height:44px}
+.who{display:flex;align-items:center;gap:10px;background:var(--soft);border-radius:14px;padding:6px 12px;margin-bottom:16px}.who img{width:36px;height:36px;border-radius:50%}.who span{flex:1;min-width:0;font-size:14px;overflow-wrap:anywhere}.who button{background:none;border:0;color:var(--muted);text-decoration:underline;font:inherit;font-size:13px;cursor:pointer;min-height:44px}
+footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:6px 24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><div class="logo"><i></i>Lacre Nail Studio</div><span>Lun–Sáb · 9:00 AM–6:00 PM</span></nav>
+  <div class="grid">
+    <header>
+      <h1>Tu cita de uñas, lista en tres toques.</h1>
+      <p class="lead">Elige el servicio, el día y la hora. Te llevamos a WhatsApp con el mensaje ya escrito y solo tienes que enviarlo.</p>
+      <ul class="facts"><li>Sin apps ni registro</li><li>Confirmación por WhatsApp</li><li>Horarios en vivo</li></ul>
+    </header>
+
+    <main class="card" aria-live="polite">
+      <div class="stepname"><span id="stepLabel">Paso 1 de 3</span><span id="stepTitle">Servicio</span></div>
+      <div class="track"><b class="on"></b><b></b><b></b></div>
+
+      <section class="pane" id="p1">
+        <h2>¿Qué te vas a hacer?</h2>
+        <div class="opts" id="services"></div>
+        <h3>¿Con quién?</h3>
+        <div class="chips" id="specs"></div>
+      </section>
+
+      <section class="pane" id="p2" hidden>
+        <h2>¿Cuándo te queda bien?</h2>
+        <div class="days" id="days"></div>
+        <h3>Horas disponibles</h3>
+        <div class="chips" id="times"></div>
+      </section>
+
+      <section class="pane" id="p3" hidden>
+        <h2>Último paso: tus datos</h2>
+        <div id="gbox" hidden><div id="gbtn"></div><div class="or">o llena tus datos</div></div>
+        <div class="who" id="who" hidden><img id="whoImg" alt="" referrerpolicy="no-referrer"><span id="whoName"></span><button type="button" id="logout">Salir</button></div>
+        <label for="nombre">Tu nombre</label>
+        <input id="nombre" autocomplete="name" placeholder="Ana Pérez">
+        <label for="tel">Tu teléfono</label>
+        <input id="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="809-555-1234" maxlength="14">
+        <div class="err" id="err"></div>
+        <h3>Así llegará tu mensaje</h3>
+        <div class="bubble" id="preview"></div>
+        <a class="btn wa" id="send" target="_blank" rel="noopener">Enviar cita por WhatsApp</a>
+        <p class="note">Tu cita queda confirmada cuando el salón responda.</p>
+      </section>
+
+      <div class="nav">
+        <button class="btn back" id="back" hidden>Atrás</button>
+        <button class="btn main" id="next" disabled>Continuar</button>
+      </div>
+    </main>
+  </div>
+  <footer><span>Av. Principal #123, Santo Domingo</span><span>Atendemos con cita previa</span></footer>
+</div>
+
+<script>
+// ====== CONFIGURACIÓN DEL NEGOCIO (edita aquí) ======
+const GOOGLE_CLIENT_ID = ""; // Opcional: pega aquí tu Client ID de Google (termina en .apps.googleusercontent.com). Vacío = sin botón de Google.
+const TELEFONO_NEGOCIO = "18090000000"; // Código de país + número del dueño, sin signos
+const SERVICIOS = [
+  {n:"Uñas Acrílicas", d:"Set completo · 2 h", p:"RD$ 1,800"},
+  {n:"Manicure Gel", d:"Esmaltado semipermanente · 1 h", p:"RD$ 900"},
+  {n:"Pedicure Spa", d:"Con exfoliación · 1 h 15 min", p:"RD$ 1,200"},
+  {n:"Diseño y Nail Art", d:"Por mano · 45 min", p:"RD$ 600"}
+];
+const ESPECIALISTAS = ["María","Carolina","Yudelka","Cualquiera"];
+const HORAS = [9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5];
+// =====================================================
+
+const DIAS = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+const S = {step:1, servicio:null, esp:null, dia:null, hora:null};
+const $ = id => document.getElementById(id);
+const fmtHora = h => { const H=Math.floor(h), m=h%1?"30":"00", ap=H>=12?"PM":"AM"; return `${((H+11)%12)+1}:${m} ${ap}`; };
+
+// Próximos 7 días abiertos (Lun–Sáb)
+const dias = []; { const d=new Date(); d.setHours(0,0,0,0); while(dias.length<7){ if(d.getDay()!==0) dias.push(new Date(d)); d.setDate(d.getDate()+1);} }
+const etiquetaDia = d => `${DIAS[d.getDay()]} ${d.getDate()}`;
+const ocupado = (d,h,e) => { const k=(d.getDate()*7+h*3+(e?e.length:0)*5)|0; return k%4===0; };
+
+function renderServicios(){
+  $("services").innerHTML = SERVICIOS.map((s,i)=>`<button class="opt" data-i="${i}" aria-pressed="${S.servicio===s.n}"><span><strong>${s.n}</strong><small>${s.d}</small></span><span class="price">${s.p}</span></button>`).join("");
+  $("specs").innerHTML = ESPECIALISTAS.map(e=>`<button class="chip" data-e="${e}" aria-pressed="${S.esp===e}">${e}</button>`).join("");
+}
+function renderDias(){
+  $("days").innerHTML = dias.map((d,i)=>`<button class="chip day" data-i="${i}" aria-pressed="${S.dia===d}"><small>${DIAS[d.getDay()].slice(0,3)}</small><b>${d.getDate()}</b></button>`).join("");
+}
+function renderHoras(){
+  if(!S.dia){ $("times").innerHTML='<span class="note">Elige un día primero.</span>'; return; }
+  const hoy = new Date(), esHoy = S.dia.getTime()===new Date(hoy.getFullYear(),hoy.getMonth(),hoy.getDate()).getTime();
+  const ahora = hoy.getHours()+hoy.getMinutes()/60;
+  $("times").innerHTML = HORAS.map(h=>{
+    const off = (esHoy && h<=ahora+0.5) || ocupado(S.dia,h,S.esp);
+    return `<button class="chip" data-h="${h}" ${off?"disabled":""} aria-pressed="${S.hora===h}">${fmtHora(h)}</button>`;
+  }).join("");
+}
+function mensaje(){
+  const nom = $("nombre").value.trim()||"Tu nombre", tel = $("tel").value.trim()||"809-XXX-XXXX";
+  const esp = S.esp==="Cualquiera" ? "Cualquier especialista disponible" : S.esp;
+  return `¡Hola! Quiero agendar una cita:\n• *Servicio:* ${S.servicio}\n• *Especialista:* ${esp}\n• *Día/Hora:* ${etiquetaDia(S.dia)} - ${fmtHora(S.hora)}\n• *Cliente:* ${nom} (${tel})`;
+}
+function datosValidos(){
+  const nom=$("nombre").value.trim(), dig=$("tel").value.replace(/\D/g,"");
+  if(nom.length<2) return "Escribe tu nombre.";
+  if(dig.length<10) return "El teléfono debe tener 10 dígitos, por ejemplo 809-555-1234.";
+  return "";
+}
+function actualizarEnvio(){
+  $("preview").textContent = mensaje();
+  $("send").href = `https://wa.me/${TELEFONO_NEGOCIO}?text=${encodeURIComponent(mensaje())}`;
+}
+function ir(n){
+  S.step=n;
+  [1,2,3].forEach(i=>$("p"+i).hidden = i!==n);
+  document.querySelectorAll(".track b").forEach((b,i)=>b.classList.toggle("on",i<n));
+  $("stepLabel").textContent=`Paso ${n} de 3`;
+  $("stepTitle").textContent=["Servicio","Día y hora","Tus datos"][n-1];
+  $("back").hidden = n===1;
+  $("next").hidden = n===3;
+  if(n===2){ renderDias(); renderHoras(); }
+  if(n===3) actualizarEnvio();
+  validar();
+}
+function validar(){
+  const ok = S.step===1 ? (S.servicio&&S.esp) : S.step===2 ? (S.dia&&S.hora!=null) : true;
+  $("next").disabled = !ok;
+}
+
+$("services").addEventListener("click",e=>{ const b=e.target.closest(".opt"); if(!b) return; S.servicio=SERVICIOS[b.dataset.i].n; renderServicios(); validar(); });
+$("specs").addEventListener("click",e=>{ const b=e.target.closest(".chip"); if(!b) return; S.esp=b.dataset.e; S.hora=null; renderServicios(); validar(); });
+$("days").addEventListener("click",e=>{ const b=e.target.closest(".chip"); if(!b) return; S.dia=dias[b.dataset.i]; S.hora=null; renderDias(); renderHoras(); validar(); });
+$("times").addEventListener("click",e=>{ const b=e.target.closest(".chip"); if(!b||b.disabled) return; S.hora=parseFloat(b.dataset.h); renderHoras(); validar(); });
+$("next").onclick=()=>ir(S.step+1);
+$("back").onclick=()=>ir(S.step-1);
+["nombre","tel"].forEach(id=>$(id).addEventListener("input",()=>{ $("err").textContent=""; actualizarEnvio(); }));
+$("send").addEventListener("click",e=>{ const m=datosValidos(); if(!m && usuario){ usuario.tel=$("tel").value.trim(); guardarUsuario(); }
+  if(m){ e.preventDefault(); $("err").textContent=m; ($("nombre").value.trim().length<2?$("nombre"):$("tel")).focus(); } });
+
+// ====== Inicio de sesión con Google (opcional) ======
+const USER_KEY="citas_usuario";
+let usuario=null;
+try{ usuario=JSON.parse(localStorage.getItem(USER_KEY)); }catch(e){}
+function guardarUsuario(){ try{ usuario ? localStorage.setItem(USER_KEY,JSON.stringify(usuario)) : localStorage.removeItem(USER_KEY); }catch(e){} }
+function decodeJwt(t){ const p=t.split(".")[1].replace(/-/g,"+").replace(/_/g,"/"); return JSON.parse(decodeURIComponent(escape(atob(p)))); }
+function aplicarUsuario(){
+  if(usuario){
+    if(!$("nombre").value) $("nombre").value=usuario.nombre||"";
+    if(usuario.tel && !$("tel").value) $("tel").value=usuario.tel;
+    $("who").hidden=false; $("gbox").hidden=true;
+    $("whoName").textContent=`Reservando como ${usuario.nombre}`;
+    $("whoImg").hidden=!usuario.foto; if(usuario.foto) $("whoImg").src=usuario.foto;
+  } else { $("who").hidden=true; $("gbox").hidden=!GOOGLE_CLIENT_ID; }
+  if(S.step===3) actualizarEnvio();
+}
+function iniciarGoogle(){
+  if(!GOOGLE_CLIENT_ID) return;
+  const sc=document.createElement("script"); sc.src="https://accounts.google.com/gsi/client"; sc.async=true;
+  sc.onload=()=>{
+    google.accounts.id.initialize({client_id:GOOGLE_CLIENT_ID, callback:r=>{
+      try{ const d=decodeJwt(r.credential); usuario={nombre:d.name||"",email:d.email||"",foto:d.picture||"",tel:(usuario&&usuario.tel)||""}; guardarUsuario(); aplicarUsuario(); }catch(e){}
+    }});
+    google.accounts.id.renderButton($("gbtn"),{theme:"outline",size:"large",text:"continue_with",locale:"es",width:280});
+  };
+  document.head.appendChild(sc);
+}
+$("logout").onclick=()=>{ usuario=null; guardarUsuario(); $("nombre").value=""; $("tel").value=""; if(window.google&&google.accounts) google.accounts.id.disableAutoSelect(); aplicarUsuario(); };
+
+renderServicios(); ir(1); iniciarGoogle(); aplicarUsuario();
+</script>
+</body>
+</html>
